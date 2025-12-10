@@ -55,9 +55,13 @@ reveals.forEach(el => observer.observe(el));
 // EMAILJS SETUP (CLEAN)
 // =======================
 
-// INIT EMAILJS
+// =======================
+// ✅ EMAILJS SETUP
+// =======================
+
+// INIT EmailJS
 (function () {
-    emailjs.init("PUT_YOUR_PUBLIC_KEY_HERE");
+    emailjs.init("SxpVdkJcV3KRKVOF9");  // ← put your Public Key here
 })();
 
 // CONTACT FORM
@@ -68,34 +72,13 @@ if (contactForm) {
     contactForm.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        if (!window.emailjs) {
-            formStatus.textContent = "Email service not loaded.";
-            formStatus.style.color = "#f97316";
-            return;
-        }
-
         formStatus.textContent = "Sending...";
         formStatus.style.color = "#9ca3af";
 
-        const formData = {
+        emailjs.send("service_5netjnm", "template_14cjg8m", {
             from_name: contactForm.from_name.value,
-            from_email: contactForm.from_email.value,
+            reply_to: contactForm.reply_to.value,
             company: contactForm.company.value,
             message: contactForm.message.value
-        };
-
-        emailjs.send("PUT_YOUR_SERVICE_ID_HERE", "PUT_YOUR_TEMPLATE_ID_HERE", formData)
-            .then(
-                function () {
-                    formStatus.textContent = "Message sent successfully ✅";
-                    formStatus.style.color = "#22c55e";
-                    contactForm.reset();
-                },
-                function (error) {
-                    console.error("EmailJS Error:", error);
-                    formStatus.textContent = "Failed to send message ❌";
-                    formStatus.style.color = "#f97316";
-                }
-            );
-    });
-}
+        })
+        .then(function () {
