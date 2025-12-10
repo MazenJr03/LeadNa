@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,7 +10,6 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="style.css?v=9999">
-
 
 </head>
 <body>
@@ -162,13 +161,16 @@
     <!-- CONTACT -->
     <section id="contact" class="contact">
         <div class="container grid-2">
-            <form>
+
+            <!-- FORM -->
+            <form id="contactForm">
                 <h3>Request a Consultation</h3>
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Email Address" required>
+                <input type="text" name="from_name" placeholder="Your Name" required>
+                <input type="email" name="from_email" placeholder="Email Address" required>
                 <input type="text" name="company" placeholder="Company">
-                <textarea placeholder="Your Message"></textarea>
+                <textarea name="message" placeholder="Your Message" required></textarea>
                 <button class="btn primary" type="submit">Send Message</button>
+                <p id="formStatus"></p>
             </form>
 
             <div class="info">
@@ -205,6 +207,15 @@
         <p class="copyright">© 2025 LEADNA</p>
     </footer>
 
+    <!-- EMAILJS -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+        (function () {
+            emailjs.init("PUT_YOUR_PUBLIC_KEY_HERE");
+        })();
+    </script>
+
+    <!-- JS -->
     <script src="script.js?v=9999"></script>
 
 </body>
