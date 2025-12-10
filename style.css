@@ -69,7 +69,7 @@ nav {
 /* HERO */
 .hero {
     height: 100vh;
-    background: url('images/leadna-hero.jpg') center/cover;
+    background: url('https://drive.google.com/file/d/1gmWpr0wDwyeg8Bh_0LzI9OfAso_qPah3/view?usp=drive_link') center/cover;
     position: relative;
     display: flex;
     align-items: center;
@@ -455,4 +455,5 @@ a {
     .about-img:hover {
         transform: scale(1.05);
     }
+
 
