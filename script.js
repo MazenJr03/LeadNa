@@ -1,4 +1,4 @@
-﻿// ACTIVE LINK
+// ACTIVE LINK
 const links = document.querySelectorAll("nav a");
 links.forEach(link => {
     link.addEventListener("click", () => {
@@ -7,16 +7,15 @@ links.forEach(link => {
     });
 });
 
-
-
 // COUNTERS
 const counters = document.querySelectorAll('.stats h3');
 let started = false;
 
 window.addEventListener('scroll', () => {
     const stats = document.querySelector(".stats");
-    const top = stats.getBoundingClientRect().top;
+    if (!stats) return;
 
+    const top = stats.getBoundingClientRect().top;
     if (top < window.innerHeight && !started) {
         counters.forEach(counter => animateCounter(counter));
         started = true;
@@ -52,12 +51,16 @@ const observer = new IntersectionObserver(entries => {
 reveals.forEach(el => observer.observe(el));
 
 
-// EMAILJS INIT
+// =======================
+// EMAILJS SETUP (CLEAN)
+// =======================
+
+// INIT EMAILJS
 (function () {
-    emailjs.init("SxpVdkJcV3KRKVOF9");
+    emailjs.init("PUT_YOUR_PUBLIC_KEY_HERE");
 })();
 
-// EMAILJS CONTACT FORM
+// CONTACT FORM
 const contactForm = document.getElementById("contactForm");
 const formStatus = document.getElementById("formStatus");
 
@@ -75,23 +78,22 @@ if (contactForm) {
         formStatus.style.color = "#9ca3af";
 
         const formData = {
-            from_name: contactForm.name.value,
-            from_email: contactForm.email.value,
+            from_name: contactForm.from_name.value,
+            from_email: contactForm.from_email.value,
             company: contactForm.company.value,
-            message: contactForm.message.value,
+            message: contactForm.message.value
         };
 
-        emailjs
-            .send("service_5netjnm", "template_14cjg8m", formData)
+        emailjs.send("PUT_YOUR_SERVICE_ID_HERE", "PUT_YOUR_TEMPLATE_ID_HERE", formData)
             .then(
-                () => {
-                    formStatus.textContent = "Message sent successfully!";
+                function () {
+                    formStatus.textContent = "Message sent successfully ✅";
                     formStatus.style.color = "#22c55e";
                     contactForm.reset();
                 },
-                (error) => {
+                function (error) {
                     console.error("EmailJS Error:", error);
-                    formStatus.textContent = "Error sending message.";
+                    formStatus.textContent = "Failed to send message ❌";
                     formStatus.style.color = "#f97316";
                 }
             );
