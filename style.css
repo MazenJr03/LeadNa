@@ -440,7 +440,19 @@ a {
 .about-img {
     transition: .5s;
 }
+/* Desktop Navbar Size Restore */
+@media (min-width: 769px) {
+    nav a {
+        font-size: 17px;
+        padding: 6px 10px;
+    }
+
+    .logo {
+        font-size: 26px;
+    }
+}
 
     .about-img:hover {
         transform: scale(1.05);
     }
+
