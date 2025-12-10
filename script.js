@@ -56,29 +56,37 @@ reveals.forEach(el => observer.observe(el));
 // =======================
 
 // =======================
-// ✅ EMAILJS SETUP
-// =======================
-
-// INIT EmailJS
+// ✅ EMAILJS INIT
 (function () {
-    emailjs.init("SxpVdkJcV3KRKVOF9");  // ← put your Public Key here
+  emailjs.init("SxpVdkJcV3KRKVOF9"); // replace with real key
 })();
 
-// CONTACT FORM
+// ✅ CONTACT FORM HANDLER
 const contactForm = document.getElementById("contactForm");
 const formStatus = document.getElementById("formStatus");
 
 if (contactForm) {
-    contactForm.addEventListener("submit", function (e) {
-        e.preventDefault();
+  contactForm.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-        formStatus.textContent = "Sending...";
-        formStatus.style.color = "#9ca3af";
+    formStatus.textContent = "Sending...";
+    formStatus.style.color = "#9ca3af";
 
-        emailjs.send("service_5netjnm", "template_14cjg8m", {
-            from_name: contactForm.from_name.value,
-            reply_to: contactForm.reply_to.value,
-            company: contactForm.company.value,
-            message: contactForm.message.value
-        })
-        .then(function () {
+    emailjs.send("service_5netjnm", "template_14cjg8m", {
+      from_name: contactForm.from_name.value,
+      reply_to: contactForm.reply_to.value,
+      company: contactForm.company.value,
+      message: contactForm.message.value,
+    })
+    .then(function () {
+      formStatus.textContent = "Message Sent ✅";
+      formStatus.style.color = "#22c55e";
+      contactForm.reset();
+    })
+    .catch(function (error) {
+      console.error("EmailJS Error:", error);
+      formStatus.textContent = "FAILED ❌";
+      formStatus.style.color = "#ef4444";
+    });
+  });
+}
