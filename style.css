@@ -1,4 +1,4 @@
-﻿/* RESET */
+/* RESET */
 * {
     margin: 0;
     padding: 0;
@@ -24,19 +24,18 @@ body {
     position: fixed;
     width: 100%;
     z-index: 1000;
-    padding: 15px 0;
-    /* BLUR BACKGROUND */
+    padding: 12px 0;
     background: rgba(0, 0, 0, 0.45);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     box-shadow: 0 10px 25px rgba(0,0,0,0.4);
 }
 
-
 .nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .logo {
@@ -49,17 +48,23 @@ body {
     }
 
 /* NAV */
-nav a {
-    margin-left: 25px;
-    text-decoration: none;
-    color: #ddd;
-    font-weight: 500;
-    transition: 0.3s;
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
 }
 
-    nav a:hover {
-        color: #e11d48;
+    nav a {
+        text-decoration: none;
+        color: #ddd;
+        font-weight: 500;
+        transition: 0.3s;
     }
+
+        nav a:hover {
+            color: #e11d48;
+        }
 
 /* HERO */
 .hero {
@@ -68,6 +73,8 @@ nav a {
     position: relative;
     display: flex;
     align-items: center;
+    text-align: left;
+    padding-top: 80px;
 }
 
 .hero-overlay {
@@ -78,10 +85,13 @@ nav a {
 
 .hero-content {
     position: relative;
+    max-width: 650px;
+    animation: fadeUp 1.2s ease forwards;
 }
 
 .hero h1 {
     font-size: 3.5rem;
+    line-height: 1.1;
 }
 
 .hero span {
@@ -95,12 +105,17 @@ nav a {
     font-size: 1.1rem;
 }
 
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
 /* BUTTON */
 .btn {
     padding: 14px 28px;
     border-radius: 8px;
     display: inline-block;
-    margin-right: 15px;
     font-weight: 600;
     transition: .3s;
 }
@@ -204,6 +219,7 @@ section {
     background: #0b1020;
     border-radius: 12px;
     overflow: hidden;
+    position: relative;
 }
 
     .project img {
@@ -216,6 +232,7 @@ section {
         padding: 15px;
     }
 
+/* BADGES */
 .badge {
     position: absolute;
     margin: 10px;
@@ -266,6 +283,11 @@ section {
     min-height: 120px;
 }
 
+#formStatus {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
 .info {
     padding: 30px;
 }
@@ -292,13 +314,13 @@ footer {
         margin-bottom: 10px;
     }
 
-copyright {
+.copyright {
     margin-top: 20px;
     font-size: 13px;
     color: #666;
 }
-/* ===== ANIMATIONS ===== */
 
+/* ===== ANIMATIONS ===== */
 @keyframes fadeUp {
     from {
         opacity: 0;
@@ -311,45 +333,110 @@ copyright {
     }
 }
 
-.animate {
-    opacity: 0;
-    animation: fadeUp 1s ease forwards;
+/* ===========================
+   MOBILE OPTIMIZATION (REAL)
+=========================== */
+@media (max-width: 768px) {
+
+    /* NAV */
+    nav {
+        justify-content: center;
+    }
+
+        nav a {
+            font-size: 13px;
+            padding: 4px;
+        }
+
+    /* HERO */
+    .hero {
+        text-align: center;
+        height: auto;
+        padding: 130px 20px 80px;
+    }
+
+        .hero h1 {
+            font-size: 2.3rem;
+        }
+
+        .hero p {
+            font-size: 0.95rem;
+            margin: 15px auto;
+        }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+        .hero-buttons .btn {
+            width: 100%;
+            max-width: 280px;
+        }
+
+    /* GRIDS */
+    .grid-2,
+    .grid-3,
+    .stats {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    /* CONTACT */
+    .contact .grid-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .info {
+        text-align: center;
+    }
+
+    /* SECTIONS SPACING */
+    section {
+        padding: 70px 0;
+    }
 }
 
-.del-1 {
-    animation-delay: .2s;
+/* EXTRA SMALL PHONES */
+@media (max-width: 420px) {
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 0.9rem;
+    }
 }
 
-.del-2 {
-    animation-delay: .4s;
+/* FORCE REMOVE LINK UNDERLINE */
+a {
+    text-decoration: none !important;
 }
 
-.del-3 {
-    animation-delay: .6s;
-}
-
-.del-4 {
-    animation-delay: .8s;
-}
+    a:hover,
+    a:focus,
+    a:active {
+        outline: none;
+    }
 
 /* BUTTON EFFECT */
 .btn:hover {
     transform: scale(1.05);
 }
 
-/* CARD GLOW EFFECT */
+/* GLOW EFFECT */
 .card:hover,
 .project:hover,
 .member:hover {
     box-shadow: 0 0 25px rgba(225,29,72,.4);
 }
 
-/* FLOATING HERO */
-.hero-content {
-    animation: fadeUp 1.2s ease forwards;
-}
-
-/* SMOOTH IMAGE ZOOM */
+/* IMAGE ZOOM */
 .about-img {
     transition: .5s;
 }
@@ -357,105 +444,3 @@ copyright {
     .about-img:hover {
         transform: scale(1.05);
     }
-/* FORCE REMOVE LINK UNDERLINE */
-a {
-    text-decoration: none !important;
-}
-
-    /* Buttons specifically */
-    a.btn,
-    a.btn.primary,
-    a.btn.outline {
-        text-decoration: none !important;
-    }
-
-    /* Hover / focus / click */
-    a:hover,
-    a:focus,
-    a:active {
-        text-decoration: none !important;
-        outline: none;
-    }
-/* ===========================
-   MOBILE FIXES
-=========================== */
-
-@media (max-width: 768px) {
-
-    /* NAV BAR FIX */
-    .nav__inner {
-        flex-wrap: wrap;
-    }
-
-    .nav__links {
-        width: 100%;
-        justify-content: center;
-        margin-top: 8px;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-        .nav__links a {
-            font-size: 0.85rem;
-        }
-
-    /* HERO LAYOUT FIX */
-    .hero {
-        grid-template-columns: 1fr;
-        text-align: center;
-        padding: 90px 16px 60px;
-    }
-
-    .hero__content {
-        max-width: 100%;
-    }
-
-        .hero__content h1 {
-            font-size: 2.3rem;
-            line-height: 1.15;
-        }
-
-        .hero__content p {
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-    /* BUTTONS STACK */
-    .hero__actions,
-    .hero__buttons {
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-    }
-
-        .hero__actions .btn,
-        .hero__buttons .btn {
-            width: 100%;
-            max-width: 280px;
-            text-align: center;
-        }
-
-    /* IMAGE HIDDEN ON MOBILE (not needed visually) */
-    .hero__image {
-        display: none;
-    }
-
-    /* TAGS CENTER */
-    .hero__tags {
-        justify-content: center;
-    }
-}
-
-/* SMALL PHONES */
-@media (max-width: 420px) {
-
-    .hero__content h1 {
-        font-size: 2rem;
-    }
-
-    .hero__content p {
-        font-size: 0.85rem;
-    }
-}
