@@ -10,6 +10,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="style.css?v=9999">
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
 </head>
 <body>
@@ -164,14 +165,21 @@
 
             <!-- FORM -->
             <form id="contactForm">
-                <h3>Request a Consultation</h3>
-                <input type="text" name="from_name" placeholder="Your Name" required>
-                <input type="email" name="from_email" placeholder="Email Address" required>
-                <input type="text" name="company" placeholder="Company">
-                <textarea name="message" placeholder="Your Message" required></textarea>
-                <button class="btn primary" type="submit">Send Message</button>
-                <p id="formStatus"></p>
-            </form>
+    <h3>Request a Consultation</h3>
+    
+    <input type="text" name="from_name" placeholder="Your Name" required>
+    
+    <input type="email" name="reply_to" placeholder="Email Address" required>
+    
+    <input type="text" name="company" placeholder="Company">
+    
+    <textarea name="message" placeholder="Your Message" required></textarea>
+
+    <p id="formStatus"></p>
+
+    <button class="btn primary" type="submit">Send Message</button>
+</form>
+
 
             <div class="info">
                 <h3>Contact Information</h3>
@@ -220,3 +228,4 @@
 
 </body>
 </html>
+
